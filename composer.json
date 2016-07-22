@@ -19,9 +19,9 @@
         }
     },
     "autoload": {
-        "psr-0": {"apitest": "src/"},
+        "psr-0": {"Apitest": "src/"},
         "psr-4": {
-            "deathkel\\apitest\\": "src/"
+            "Deathkel\\Apitest\\": "src/"
         }
     }
 }
