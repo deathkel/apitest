@@ -1,0 +1,27 @@
+{
+    "name": "deathkel/apitest",
+    "description": "Simple API TEST tool for Laravel REST",
+    "homepage": "https://github.com/deatkel/apitest",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "KEL"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "versioin":"1.0.0",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "autoload": {
+        "psr-0": {"apitest": "src/"},
+        "psr-4": {
+            "deathkel\\apitest\\": "src/"
+        }
+    }
+}
