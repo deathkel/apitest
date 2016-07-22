@@ -1,5 +1,5 @@
 <?php
-namespace ApiTest\Parser;
+namespace Deathkel\Apitest\Parser;
 
 class DocParser {
     private static $instance;

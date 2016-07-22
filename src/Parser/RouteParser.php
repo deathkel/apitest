@@ -1,5 +1,5 @@
 <?php
-namespace ApiTest\Parser;
+namespace Deathkel\Apitest\Parser;
 /**
  * Created by PhpStorm.
  * User: KEL

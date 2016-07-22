@@ -6,7 +6,7 @@
  * Time: 18:47
  */
 
-namespace ApiTest;
+namespace Deathkel\Apitest;
 
 use ApiTest\Parser\RouteParser;
 use ApiTest\Parser\DocParser;
@@ -15,6 +15,7 @@ class ApiReflection
 {
     protected $config;
     protected $routeList=array();
+
     /**
      * @return array
      * 获取config中包含类的反射api
@@ -49,7 +50,7 @@ class ApiReflection
      * @param class
      * @return array
      * 获取单个类的反射api
-     * y
+     *
      */
     protected function getApiByClass($class){
         $reflection=new \ReflectionClass($class);
@@ -66,7 +67,7 @@ class ApiReflection
      * 提取控制器名字
      * @param controllerName
      * @return string
-     * y
+     *
      */
     protected function shortenControllerName($name){
         preg_match('/\w*Controller\.php/',$name,$start,PREG_OFFSET_CAPTURE);//匹配 *Controller.php起始位置
@@ -84,7 +85,7 @@ class ApiReflection
     /**
      * @param $reflection
      * @return array
-     * y
+     *
      */
     protected function getAllMethodApi(\ReflectionClass $reflection)
     {

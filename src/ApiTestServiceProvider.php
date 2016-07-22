@@ -1,5 +1,5 @@
 <?php
-namespace ApiTest;
+namespace Deathkel\Apitest;
 
 use Illuminate\Support\ServiceProvider;
 
