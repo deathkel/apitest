@@ -13,7 +13,7 @@ composer require deathkel/apitest
 ```php
         'providers'=>[
             //...
-            'ApiTest\ApiTestServiceProvider'
+            Deathkel\Apitest\ApiTestServiceProvider::class
         ]
 ```
 运行 'php artisan vender:publish'将视图文件和静态文件发布到你们的项目中，请确保文件夹resource/views/api和public/api文件夹为空。
@@ -29,7 +29,7 @@ composer require deathkel/apitest
 ```
 ##控制器示例
 ```
-    use ApiTest\ApiReflection
+    use Deathkel\Apitest\ApiReflection;
     
     class ApiTestController extend Controller{
         public function index(){
