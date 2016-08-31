@@ -13,7 +13,7 @@ class ApiTestServiceProvider extends ServiceProvider
 	{
 		$this->publishes([
 			__DIR__ . '/frontend/static' => base_path('public/api'),
-			__DIR__ . '/frontend/blade/index.blade.php'=>base_path('resources/views/api')
+			__DIR__ . '/frontend/blade/index.blade.php'=>base_path('resources/views/api/index.blade.php')
 		]);
 	}
 
