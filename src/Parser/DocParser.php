@@ -1,4 +1,5 @@
 <?php
+
 namespace Deathkel\Apitest\Parser;
 
 class DocParser {

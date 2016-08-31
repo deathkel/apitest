@@ -8,8 +8,8 @@
 
 namespace Deathkel\Apitest;
 
-use ApiTest\Parser\RouteParser;
-use ApiTest\Parser\DocParser;
+use Deathkel\Apitest\Parser\RouteParser;
+use Deathkel\Apitest\Parser\DocParser;
 
 class ApiReflection
 {
