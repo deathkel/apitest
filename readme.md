@@ -41,3 +41,18 @@ composer require deathkel/apitest
         }
     }
 ```
+默认加载所有控制器，你可以使用setConfig()方法来手动设置要加载的控制器，
+```
+    private function config(){
+        return [
+            'App\Http\Controllers\IndexController',
+            'App\Http\Controllers\HomeController',
+        ];
+    }
+    
+    .....
+    $reflection=new ApiReflection();
+    $reflection->setConfig($this->config());
+    $api=$reflection->getApi();
+    .....
+```
