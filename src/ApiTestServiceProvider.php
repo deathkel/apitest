@@ -3,7 +3,7 @@ namespace Deathkel\Apitest;
 
 use Illuminate\Support\ServiceProvider;
 
-class AlipayServiceProvider extends ServiceProvider
+class ApiTestServiceProvider extends ServiceProvider
 {
 
 	/**
