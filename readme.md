@@ -2,10 +2,12 @@ APITEST
 ======
 #轻量级laravel REST接口测试工具
 用于查看和测试后端REST接口
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/string.svg?style=flat-square)](https://packagist.org/packages/deathkel/apitest)
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/deathkel/apitest.svg?style=flat-square)](https://packagist.org/packages/deathkel/apitest)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/string.svg?style=flat-square)](https://packagist.org/packages/deathkel/apitest)
-#要求
+[![Total Downloads](https://img.shields.io/packagist/dt/deathkel/apitest.svg?style=flat-square)](https://packagist.org/packages/deathkel/apitest)
+
+#版本要求
 laravel >= 5.1,php > 7
 #安装
 ```
