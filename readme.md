@@ -2,7 +2,12 @@ APITEST
 ======
 #轻量级laravel REST接口测试工具
 用于查看和测试后端REST接口
-##安装
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/string.svg?style=flat-square)](https://packagist.org/packages/deathkel/apitest)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/string.svg?style=flat-square)](https://packagist.org/packages/deathkel/apitest)
+#要求
+laravel >= 5.1,php > 7
+#安装
 ```
 composer require deathkel/apitest
 ```
@@ -56,3 +61,7 @@ composer require deathkel/apitest
     $api=$reflection->getApi();
     .....
 ```
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
