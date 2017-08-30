@@ -9,8 +9,9 @@
 namespace App\Http\Controllers;
 
 use Deathkel\Apitest\ApiReflection;
+use Illuminate\Routing\Controller;
 
-class ApiTestController
+class ApiTestController extends Controller
 {
     public function index(){
         $apiReflection = new ApiReflection();
