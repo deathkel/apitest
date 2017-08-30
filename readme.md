@@ -23,7 +23,7 @@ composer require deathkel/apitest
             Deathkel\Apitest\ApiTestServiceProvider::class
         ]
 ```
-运行 'php artisan vender:publish'将视图文件和静态文件发布到你们的项目中，请确保文件夹resource/views/api和public/api文件夹为空。
+运行 'php artisan vendor:publish'将视图文件和静态文件发布到你们的项目中，请确保文件夹resource/views/api和public/api文件夹为空。
 否则请自行复制使用本项目frotend文件中的blade和静态文件
   
 ##Route配置示例
