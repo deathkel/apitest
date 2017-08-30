@@ -27,7 +27,7 @@ class ApiTestServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        \Route::add();
+
     }
 
     /**
