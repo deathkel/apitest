@@ -6,79 +6,40 @@ namespace Deathkel\Apitest\Parser;
  * Date: 2015/11/24
  * Time: 16:31
  */
+use Illuminate\Support\Facades\Route;
 class RouteParser
 {
     private static $instance;
 
-    private $list=array();
+    /**
+     * 路由列表
+     * @var array
+     * array:132 [▼
+     *   0 => array:4 [▼
+     *   "controller" => "App\Http\Controllers\StaffController"
+     *   "action" => "addStaff"
+     *   "method" => "POST"
+     *   "uri" => "api/staff"
+     *   ]
+     * ]
+     */
+    private $list = array();
 
-    private $routeList=array();
 
-    private $controllerList=array();
-
-    private function __construct(){
-        $this->setRouteList();
-        $this->setControllerList();
+    private function __construct()
+    {
         $this->setList();
     }
 
     /**
      * 单例
      */
-    public static function getInstance(){
-        if(self::$instance==null) {
-            self::$instance=new RouteParser();
+    public static function getInstance()
+    {
+        if (self::$instance == null) {
+            self::$instance = new RouteParser();
         }
         return self::$instance;
-    }
-
-    /**
-     * 通过路由自动获取所有controller
-     */
-    protected function setControllerList(){
-        $routes=\Route::getRoutes();
-        foreach($routes as $route) {
-            $actionName=$route->getActionName();
-            preg_match('/\@/',$actionName,$end,PREG_OFFSET_CAPTURE);
-            if(!isset($end[0])){
-                continue;
-            }
-            $controller=substr($actionName,0,$end[0][1]);
-            if(!in_array($controller,$this->controllerList)) {
-                array_push($this->controllerList,$controller);
-            }
-
-
-        }
-    }
-
-    /**
-     * 返回所有的controller
-     */
-    public function getControllerList(){
-        return $this->controllerList;
-    }
-
-    /**
-     * 获取所有路由
-     */
-    protected function setRouteList(){
-        $routes=\Route::getRoutes();
-        foreach($routes as $route) {
-            $compiled = $route->getCompiled();
-            if(!is_null($compiled)) {
-                $uri = $compiled->getStaticPrefix();
-                array_push($this->routeList, $uri);
-            }
-        }
-    }
-
-    /**
-     * 获取RouteList
-     */
-    public function getRouteList()
-    {
-        return $this->routeList;
     }
 
     /**
@@ -86,41 +47,60 @@ class RouteParser
      */
     protected function setList()
     {
-        $routes=\Route::getRoutes();
-        foreach($routes as $route) {
-            $arr=array();
-
-            $actionName=$route->getActionName();
-            preg_match('/\@/',$actionName,$end,PREG_OFFSET_CAPTURE);
-            if(!isset($end[0])){
+        $routes = Route::getRoutes();
+        foreach ($routes as $route) {
+            $arr = array();
+//            dump($route);
+            $actionName = $route->getActionName();
+            preg_match('/\@/', $actionName, $end, PREG_OFFSET_CAPTURE);
+            if (!isset($end[0])) {
                 continue;
             }
-            $controller=substr($actionName,0,$end[0][1]);
-            $arr['controller']=$controller;
+            $controller = substr($actionName, 0, $end[0][1]);
+            $arr['controller'] = $controller;
 
-            $action=substr($actionName,$end[0][1]+1);
-            $arr['action']=$action;
+            $action = substr($actionName, $end[0][1] + 1);
+            $arr['action'] = $action;
 
-            $arr['method']=$route->getMethods()[0];
-            $arr['uri']=$route->getPath();
+            $arr['method'] = $route->getMethods()[0];
+            $arr['uri'] = $route->getPath();
 
-            array_push($this->list,$arr);
+            array_push($this->list, $arr);
         }
     }
 
     /**
      * 获取list
      */
-    public function getList(){
+    public function getList()
+    {
         return $this->list;
     }
 
     /**
-     * 通过actionName获取uri
+     * 获取RouteList
      */
-    public function getUriByControllerAction($controller,$action){
-        foreach($this->list as $one){
-            if($one['controller']==$controller&&$one['action']==$action){
+    public function getControllerList()
+    {
+        return array_unique(array_column($this->list, 'controller'));
+    }
+    public function getActionByController($controller){
+        $obj = [];
+        foreach ($this->list as $value){
+            if($value['controller'] == $controller) {
+                $obj[] = $value['action'];
+            }
+        }
+
+        return $obj;
+    }
+    /**
+     * 通过controller actionName获取uri
+     */
+    public function getUriByControllerAction($controller, $action)
+    {
+        foreach ($this->list as $one) {
+            if ($one['controller'] == $controller && $one['action'] == $action) {
                 return $one['uri'];
             }
         }
@@ -130,9 +110,10 @@ class RouteParser
     /**
      * 通过actionName获取list
      */
-    public function getListByControllerAction($controller,$action){
-        foreach($this->list as $one){
-            if($one['controller']==$controller&&$one['action']==$action){
+    public function getListByControllerAction($controller, $action)
+    {
+        foreach ($this->list as $one) {
+            if ($one['controller'] == $controller && $one['action'] == $action) {
                 return $one;
             }
         }
