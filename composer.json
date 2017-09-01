@@ -10,18 +10,25 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=7.0",
+        "laravel/framework": "5.1.*",
+        "orchestra/testbench": "^3.1",
+        "phpunit/phpunit": "~5.0"
     },
-    "versioin":"0.0.1",
+    "version":"0.1.0",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.0.1-dev"
+            "dev-master": "0.1.0-dev"
         }
     },
     "autoload": {
         "psr-4": {
             "Deathkel\\Apitest\\": "src/"
-        }
+        },
+        "classmap": [
+            "tests/Providers/RouteServiceProvider.php",
+            "tests/Controllers/ExampleController.php"
+        ]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }

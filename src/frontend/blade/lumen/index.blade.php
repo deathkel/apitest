@@ -201,11 +201,13 @@
         }
 
         $('.J-submit').click(function () {
+            console.log('123')
             var method = $('.a-method').html();
             var j_param = $('.a-param').find('.J-param');
             var uri_static = $('.a-uri').find('.uri-static');
             var data = {};
-            var url = '/';
+            var url = '';
+
             j_param.each(function () {
                 var p_key = $(this).find('.p-key').val();
                 var p_value = $(this).find('.p-value').val();
@@ -217,7 +219,6 @@
                 var nodename = $(this).context.nodeName;
                 if (nodename == "SPAN") {
                     url += $(this).html();
-                    console.log($(this).html());
                 } else if (nodename == "INPUT") {
                     if ($(this).val()) {
                         url += $(this).val();
@@ -241,6 +242,7 @@
                 return;
             }
 
+            console.log(url)
             $.ajax({
                 type: method,
                 url: url,
