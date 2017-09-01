@@ -50,7 +50,6 @@ class RouteParser
         $routes = Route::getRoutes();
         foreach ($routes as $route) {
             $arr = array();
-//            dump($route);
             $actionName = $route->getActionName();
             preg_match('/\@/', $actionName, $end, PREG_OFFSET_CAPTURE);
             if (!isset($end[0])) {

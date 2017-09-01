@@ -44,7 +44,7 @@ class ApiReflection
     protected function filterClass()
     {
         $blackClass = config('apiTest.classBlackList');
-
+        if(!$blackClass) return;
         foreach ($this->classList as $k => $value) {
             if (in_array($value, $blackClass)) unset($this->classList[$k]);
         }
