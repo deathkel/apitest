@@ -63,6 +63,42 @@ composer require deathkel/apitest
     $api=$reflection->getApi();
     .....
 ```
+### 界面示例
+![](img/api.jpeg?raw=true)
+-----------------
+### 注释说明
+1. `@apiTest` : apiTest功能标识 
+* 添加了该参数才能使用该工具的其他功能。否则注释只能以文本格式展示(可用于兼容老的注释)
+ 
+2. `@param {参数格式} {参数} {简单说明}` : 查询参数 
+* 参数格式:自定义参数的格式名称。如（int|string|可选）等等
+* 参数名称:查询参数的名称。如name,title等等
+* 简单说明:随意写点吧
+> 注意用一个`空格`分割
+
+3. `@{任意名称}` : 任意注释
+* 如`author` `version` ...
+
+> 注意名称和说明之间用一个`空格`分割
+4. 写法示例
+
+```php
+/**
+ * @apiTest
+ * @param nullable|int name 名称
+ * @说明 这个是index方法
+ * @随便啥玩意 随便啥的说明
+ * 随便啥的说明第二行
+ * -#-%^&*;a'd--符号啥的也都可以
+ * @又一个名称
+ * 又一个名称的注释
+ * @author kel
+ * @version 1.0.0
+ */
+public function index(){
+
+}
+```
 
 ## License
 
