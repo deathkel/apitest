@@ -16,13 +16,20 @@ class ApiReflection
     //控制器类名列表
     protected $classList;
 
+    public function __construct()
+    {
+        if (config('apiTest.mode') == 'auto') {
+            $this->setClassListAuto();
+        }
+    }
+
     /**
      * @return array
      * 获取config中包含类的反射api
      */
     public function getApi()
     {
-        $this->setClassListAuto();
+        if(!$this->classList) $this->setClassListAuto();
 
         $arr = array();
         foreach ($this->classList as $class) {
@@ -31,6 +38,17 @@ class ApiReflection
             }
         }
         return $arr;
+    }
+
+    public function setClassList(array $classList)
+    {
+        $this->classList = $classList;
+        array_multisort($this->classList, SORT_ASC);
+    }
+
+    public function getClassList()
+    {
+        return $this->classList;
     }
 
     /**
