@@ -26,7 +26,9 @@ class ApiReflection
 
         $arr = array();
         foreach ($this->classList as $class) {
-            array_push($arr, $this->getApiByClass($class));
+            if (class_exists($class)) {
+                array_push($arr, $this->getApiByClass($class));
+            }
         }
         return $arr;
     }
@@ -44,7 +46,7 @@ class ApiReflection
     protected function filterClass()
     {
         $blackClass = config('apiTest.classBlackList');
-        if(!$blackClass) return;
+        if (!$blackClass) return;
         foreach ($this->classList as $k => $value) {
             if (in_array($value, $blackClass)) unset($this->classList[$k]);
         }
@@ -107,8 +109,7 @@ class ApiReflection
             //没有使用apiTest 注释的注释直接返回
             if (!isset($param['apiTest'])) {
                 $method['comment'] = $doc;
-            }
-            else {
+            } else {
                 $method['comment'] = $param;
             }
 
