@@ -53,7 +53,14 @@ class RouteParser
         $routes = method_exists(app(), 'getRoutes') ? app()->getRoutes() : Route::getRoutes();
         foreach ($routes as $route) {
             $arr = array();
-            $actionName = $route->getActionName();
+            if(method_exists($route, 'getActionName')){
+                $actionName = $route->getActionName();
+            } elseif (isset($route['action']['uses'])){
+                $actionName = $route['action']['uses'];
+            } else{
+                continue;
+            }
+
             preg_match('/\@/', $actionName, $end, PREG_OFFSET_CAPTURE);
             if (!isset($end[0])) {
                 continue;
@@ -65,8 +72,10 @@ class RouteParser
             $arr['action'] = $action;
 
             //laravel 5.5 Route删除了getPath方法，并将methods, path等设置为了public
-            $arr['method'] = method_exists($route, 'getMethods') ? $route->getMethods()[0] : $route->methods[0];
-            $arr['uri'] = method_exists($route, 'getPath') ? $route->getPath() : $route->uri;
+            $arr['method'] = method_exists($route, 'getMethods') ? $route->getMethods()[0] :
+                ($route['method'] ?? $route->methods[0]);
+            $arr['uri'] = method_exists($route, 'getPath') ? $route->getPath() :
+                ($route['uri'] ?? $route->uri);
 
             array_push($this->list, $arr);
         }
