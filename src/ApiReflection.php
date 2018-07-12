@@ -16,19 +16,39 @@ class ApiReflection
     //控制器类名列表
     protected $classList;
 
+    public function __construct()
+    {
+        if (config('apiTest.mode') == 'auto') {
+            $this->setClassListAuto();
+        }
+    }
+
     /**
      * @return array
      * 获取config中包含类的反射api
      */
     public function getApi()
     {
-        $this->setClassListAuto();
+        if(!$this->classList) $this->setClassListAuto();
 
         $arr = array();
         foreach ($this->classList as $class) {
-            array_push($arr, $this->getApiByClass($class));
+            if (class_exists($class)) {
+                array_push($arr, $this->getApiByClass($class));
+            }
         }
         return $arr;
+    }
+
+    public function setClassList(array $classList)
+    {
+        $this->classList = $classList;
+        array_multisort($this->classList, SORT_ASC);
+    }
+
+    public function getClassList()
+    {
+        return $this->classList;
     }
 
     /**
@@ -44,7 +64,7 @@ class ApiReflection
     protected function filterClass()
     {
         $blackClass = config('apiTest.classBlackList');
-        if(!$blackClass) return;
+        if (!$blackClass) return;
         foreach ($this->classList as $k => $value) {
             if (in_array($value, $blackClass)) unset($this->classList[$k]);
         }
@@ -107,8 +127,7 @@ class ApiReflection
             //没有使用apiTest 注释的注释直接返回
             if (!isset($param['apiTest'])) {
                 $method['comment'] = $doc;
-            }
-            else {
+            } else {
                 $method['comment'] = $param;
             }
 

@@ -1,5 +1,7 @@
 <?php
+
 namespace Deathkel\Apitest\Parser;
+
 /**
  * Created by PhpStorm.
  * User: KEL
@@ -7,6 +9,7 @@ namespace Deathkel\Apitest\Parser;
  * Time: 16:31
  */
 use Illuminate\Support\Facades\Route;
+
 class RouteParser
 {
     private static $instance;
@@ -47,7 +50,7 @@ class RouteParser
      */
     protected function setList()
     {
-        $routes = Route::getRoutes();
+        $routes = method_exists(app(), 'getRoutes') ? app()->getRoutes() : Route::getRoutes();
         foreach ($routes as $route) {
             $arr = array();
             $actionName = $route->getActionName();
@@ -84,16 +87,19 @@ class RouteParser
     {
         return array_unique(array_column($this->list, 'controller'));
     }
-    public function getActionByController($controller){
+
+    public function getActionByController($controller)
+    {
         $obj = [];
-        foreach ($this->list as $value){
-            if($value['controller'] == $controller) {
+        foreach ($this->list as $value) {
+            if ($value['controller'] == $controller) {
                 $obj[] = $value['action'];
             }
         }
 
         return $obj;
     }
+
     /**
      * 通过controller actionName获取uri
      */
