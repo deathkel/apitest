@@ -46,7 +46,7 @@
 
 <div class="content">
     <ol class="am-breadcrumb am-breadcrumb-slash">
-        <li><a href="#">象盟api文档</a></li>
+        <li><a href="#">api文档</a></li>
         <li class="am-active">api</li>
 
     </ol>
